@@ -35,8 +35,9 @@
     <script>
         function triggerSOS(){
           if("vibrate" in navigator){
-            navigator.vibrate([200, 200, 200, 1000, 1000, 1000, 200, 200, 200]);
-          }else{
+            navigator.vibrate([300, 300, 300, 1000, 1000, 1000, 1000, 300, 300, 300]);
+          }
+          else{
             alert("Twoje urządzenie nie obsługuje wibracji");
           }
         }
