@@ -4,25 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SOS</title>
-  <script>
-    function sos(){
-      window.navigator.vibrate([200, 200, 200, 1000, 1000, 1000, 200, 200, 200]);
-    }
-  </script>
-  <style>
-    button {
-      display: block;
-      margin: auto;
-      padding: 10px 20px;
-      font-size: 24px;
-      border-radius: 5px;
-      background-color: red;
-      color: white;
-      border: none;
-    }
-  </style>
 </head>
-<body>
-  <button onclick="sos()">SOS</button>
+<body onload="initHaptics()"><script>
+  var curVibe = 0;
+  var tmint;
+  function initHaptics() {
+  document.body.addEventListener("touchmove", buzzPos, false);
+  document.body.addEventListener("touchend", buzzStop, false);
+  tmint = window.setInterval(buzzTime, 150);
+  }
+  function buzzTime() {
+  window.navigator.vibrate(curVibe);
+  }
+  function buzzPos(event) {
+  event.preventDefault();
+  e = document.elementFromPoint(event.touches.item(0).clientX, event.touches.item(0).clientY);
+  curVibe = 0;
+  if (e.id == "f1") { curVibe = 100; window.navigator.vibrate(curVibe); }
+  if (e.id == "li") { curVibe = 50; window.navigator.vibrate(curVibe); }
+  }
+  function buzzStop() {
+  event.preventDefault();
+  window.navigator.vibrate([200, 200, 200, 1000, 1000, 1000, 200, 200, 200]);
+  curVibe = 0;
+  }
+</script>
 </body>
 </html>
