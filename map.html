@@ -1,10 +1,10 @@
 <html>
 <head>
-   <title>Leaflet Map</title>
+   <title>Map</title>
    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
    <style>
       #map {
-         height: 50vh;
+         height: 55vh;
       }
    </style>
 </head>
@@ -13,7 +13,8 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script>
    // Create a map instance
-   var map = L.map('map').setView([51.505, -0.09], 13);
+   //https://www.openstreetmap.org/#map=17/50.06914/19.9547 
+   var map = L.map('map').setView([50.06914, 19.9547], 16.5);
 
    // Add a tile layer to the map
    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
