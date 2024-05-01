@@ -1,10 +1,10 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import Header from './components/Header.vue';
+import HeaderComponent from './components/HeaderComponent.vue';
 </script>
 
 <template>
-  <Header />
+  <HeaderComponent />
 
   <RouterView />
 </template>
@@ -71,4 +71,4 @@ nav a:first-of-type {
     margin-top: 1rem;
   }
 }
-</style>
+</style>./components/HeaderComponent.vue
