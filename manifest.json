@@ -1,1 +1,21 @@
-{"short_name":"MTools","name":"Mobile Tools","icons":[{"src":"/assets/img/g4443167dd4c22fc5940de449e865d409485ac3b7b793fcc35a85f39e736c57081aac6208db4fe514bf572bd573289ffc5cdb5704550fa18b2eebe429c71c4bc0_640-3.png","type":"image/png","sizes":"1280x1280"}],"start_url":"index.html","display":"fullscreen","orientation":"portrait"}
+{
+    "short_name": "mApp",
+    "name": "mApp",
+    "icons": [
+        {
+            "src": "/assets/img/g30d08851a4372593489d5494277c7f1ec1577cd1a2ff993f227dcf1188336c7a15c483c17369655253b31d0ccadac12e4ae5948711b8faf76077ca667863332b_640-2.png",
+            "type": "image/png",
+            "sizes": "640x640",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/assets/img/g30d08851a4372593489d5494277c7f1ec1577cd1a2ff993f227dcf1188336c7a15c483c17369655253b31d0ccadac12e4ae5948711b8faf76077ca667863332b_640-3.png",
+            "type": "image/png",
+            "sizes": "640x640",
+            "purpose": "any maskable"
+        }
+    ],
+    "start_url": "index.html",
+    "display": "fullscreen",
+    "orientation": "portrait"
+}
