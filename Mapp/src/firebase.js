@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, browserLocalPersistence } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -19,6 +20,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth();
+const db = getFirestore(firebaseApp);
 auth.setPersistence(browserLocalPersistence)
   .then(() => {
     // Existing and future Auth states are now persisted in the current
@@ -34,4 +36,4 @@ auth.setPersistence(browserLocalPersistence)
     var errorMessage = error.message;
   });
 
-export { firebaseApp , auth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup}
+export { firebaseApp , db, auth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup}

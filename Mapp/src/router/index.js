@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
+import AddPlaceView from '@/views/AddPlaceView.vue'
 import { auth } from '../firebase'; 
 
 
@@ -34,6 +35,11 @@ const router = createRouter({
           }
         });
       },
+    },
+    {
+      path: '/add-place',
+      name: 'addplace',
+      component: AddPlaceView,
     }
   ]
 })

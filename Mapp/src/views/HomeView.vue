@@ -4,7 +4,7 @@
 <template>
   <div>
     <div id="map" class="col-lg-12"></div>
-    <button @click="saveCurrentLocation" class="btn" style="color: white;background: #00a693;margin-left:20px" >Save Current Location</button>
+    <a href="/mApp/add-place"><button class="btn" style="color: white;background: #00a693;margin-left:20px" >Save Current Location</button></a>
     <section>
         <h1 style="margin-left: 20px; margin-top:20px;">Location</h1>
         <p style="margin-left: 20px;">Rating ⭐⭐⭐⭐⭐</p>
@@ -43,7 +43,7 @@ export default {
 
     var liveIcon = L.icon({
       iconUrl: currentLocationIcon,
-      iconSize: [10, 10],
+      iconSize: [15, 15],
     });
 
     var marker, circle;
