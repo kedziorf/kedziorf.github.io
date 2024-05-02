@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import LoginView from '@/views/LoginView.vue'
+import LoginView from '../views/LoginView.vue'
+import RegisterView from '@/views/RegisterView.vue'
+import { auth } from '../firebase'; 
 
 
 const router = createRouter({
@@ -12,9 +14,24 @@ const router = createRouter({
       component: LoginView
     },
     {
+      path: '/register',
+      name: 'register',
+      component: RegisterView
+    },
+    {
       path: '/home',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      beforeEnter: (to, from, next) => {
+        // Check if user is logged in
+        if (!auth.currentUser) {
+          // If not, redirect to login page
+          next({ name: 'login' });
+        } else {
+          // If yes, proceed to home page
+          next();
+        }
+      },
     },
     {
       path: '/about',
