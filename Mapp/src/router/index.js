@@ -23,23 +23,17 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
       beforeEnter: (to, from, next) => {
-        // Check if user is logged in
-        if (!auth.currentUser) {
-          // If not, redirect to login page
-          next({ name: 'login' });
-        } else {
-          // If yes, proceed to home page
-          next();
-        }
+        // Listen for auth state changes
+        auth.onAuthStateChanged(user => {
+          if (user) {
+            // If user is signed in, proceed to home page
+            next();
+          } else {
+            // If user is not signed in, redirect to login page
+            next({ name: 'login' });
+          }
+        });
       },
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
     }
   ]
 })

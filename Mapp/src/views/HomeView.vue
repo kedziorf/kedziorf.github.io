@@ -2,24 +2,27 @@
 </script>
 
 <template>
-  
-  <div id="map" class="col-lg-12"></div>
-  <button @click="saveCurrentLocation" class="btn" style="color: white;background: #00a693;margin-left:20px" >Save Current Location</button>
-  <section>
-      <h1 style="margin-left: 20px; margin-top:20px;">Location</h1>
-      <p style="margin-left: 20px;">Rating ⭐⭐⭐⭐⭐</p>
-      <p style="margin-left: 20px;">Description</p>
-      <p style="margin-left: 20px;">This is my favourite location in my city</p>
-  </section>
-  <section>
-      <img src="../assets/img/photo-1526679029800-3840612ca4ec.jpg" alt="brown wooden door open on restaurant" class="img-thumbnail">
-  </section>
+  <div>
+    <div id="map" class="col-lg-12"></div>
+    <button @click="saveCurrentLocation" class="btn" style="color: white;background: #00a693;margin-left:20px" >Save Current Location</button>
+    <section>
+        <h1 style="margin-left: 20px; margin-top:20px;">Location</h1>
+        <p style="margin-left: 20px;">Rating ⭐⭐⭐⭐⭐</p>
+        <p style="margin-left: 20px;">Description</p>
+        <p style="margin-left: 20px;">This is my favourite location in my city</p>
+    </section>
+    <section>
+      <h1 style="margin-left: 20px; margin-top:20px;">Photos</h1> 
+        <img src="../assets/img/photo-1526679029800-3840612ca4ec.jpg" alt="brown wooden door open on restaurant" class="img-thumbnail">
+    </section>
+  </div>
     
   
 </template>
 
 <script>
 import L from 'leaflet';
+import currentLocationIcon from '../assets/img/current-location-icon.png';
 
 export default {
   mounted() {
@@ -38,6 +41,11 @@ export default {
       }, 2000);
     }
 
+    var liveIcon = L.icon({
+      iconUrl: currentLocationIcon,
+      iconSize: [10, 10],
+    });
+
     var marker, circle;
 
     function getPosition(position) {
@@ -53,7 +61,7 @@ export default {
         map.removeLayer(circle)
       }
 
-      marker = L.marker([lat, long])
+      marker = L.marker([lat, long], {icon: liveIcon})
 
       circle = L.circle([lat, long], {radius: accuracy})
 
