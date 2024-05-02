@@ -1,0 +1,21 @@
+{
+    "short_name": "mApp",
+    "name": "mApp",
+    "icons": [
+        {
+            "src": "pin-icon.png",
+            "type": "image/png",
+            "sizes": "640x640",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "pin-icon.png",
+            "type": "image/png",
+            "sizes": "640x640",
+            "purpose": "any maskable"
+        }
+    ],
+    "start_url": "index.html",
+    "display": "fullscreen",
+    "orientation": "portrait"
+}
