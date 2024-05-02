@@ -3,13 +3,13 @@
     "name": "mApp",
     "icons": [
         {
-            "src": "/assets/img/g30d08851a4372593489d5494277c7f1ec1577cd1a2ff993f227dcf1188336c7a15c483c17369655253b31d0ccadac12e4ae5948711b8faf76077ca667863332b_640-2.png",
+            "src": "/pin-icon.png",
             "type": "image/png",
             "sizes": "640x640",
             "purpose": "any maskable"
         },
         {
-            "src": "/assets/img/g30d08851a4372593489d5494277c7f1ec1577cd1a2ff993f227dcf1188336c7a15c483c17369655253b31d0ccadac12e4ae5948711b8faf76077ca667863332b_640-3.png",
+            "src": "/pin-icon.png",
             "type": "image/png",
             "sizes": "640x640",
             "purpose": "any maskable"

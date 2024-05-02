@@ -3,9 +3,10 @@
 
 <template>
   
-  <!-- <div id="map" class="col-lg-12"></div> -->
+  <div id="map" class="col-lg-12"></div>
+  <button @click="saveCurrentLocation" class="btn" style="color: white;background: #00a693;margin-left:20px" >Save Current Location</button>
   <section>
-      <h1 style="margin-left: 20px;">Location</h1>
+      <h1 style="margin-left: 20px; margin-top:20px;">Location</h1>
       <p style="margin-left: 20px;">Rating ⭐⭐⭐⭐⭐</p>
       <p style="margin-left: 20px;">Description</p>
       <p style="margin-left: 20px;">This is my favourite location in my city</p>
@@ -17,49 +18,47 @@
   
 </template>
 
-<script setup>
-    // var map = L.map('map').setView([0,0], 1);
+<script>
+import L from 'leaflet';
 
-    // //osm layer
-    // var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    // });
-    // osm.addTo(map);
+export default {
+  mounted() {
+    var map = L.map('map').setView([0,0], 1);
 
-    // if(!navigator.geolocation) {
-    //     console.log("Your browser doesn't support geolocation feature!")
-    // } else {
-    //     setInterval(() => {
-    //         navigator.geolocation.getCurrentPosition(getPosition)
-    //     }, 2000);
-    // }
+    var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+    osm.addTo(map);
 
-    // var marker, circle;
+    if(!navigator.geolocation) {
+      console.log("Your browser doesn't support geolocation feature!")
+    } else {
+      setInterval(() => {
+        navigator.geolocation.getCurrentPosition(getPosition)
+      }, 2000);
+    }
 
-    // function getPosition(position){
-    //     // console.log(position)
-    //     var lat = position.coords.latitude
-    //     var long = position.coords.longitude
-    //     var accuracy = position.coords.accuracy
+    var marker, circle;
 
-    //     if(marker) {
-    //         map.removeLayer(marker)
-    //     }
+    function getPosition(position) {
+      var lat = position.coords.latitude
+      var long = position.coords.longitude
+      var accuracy = position.coords.accuracy
 
-    //     if(circle) {
-    //         map.removeLayer(circle)
-    //     }
+      if(marker) {
+        map.removeLayer(marker)
+      }
 
-    //     marker = L.marker([lat, long])
+      if(circle) {
+        map.removeLayer(circle)
+      }
 
-    //     circle = L.circle([lat, long], {radius: accuracy})
+      marker = L.marker([lat, long])
 
-    //     var featureGroup = L.featureGroup([marker, circle]).addTo(map)
-        
-    //     //fit the map to the bounds
-    //     //map.fitBounds(featureGroup.getBounds())
+      circle = L.circle([lat, long], {radius: accuracy})
 
-    //     // console.log("Your coordinate is: Lat: "+ lat +" Long: "+ long+ " Accuracy: "+ accuracy)
-    // }
-    // marker2=L.marker([0,0]).addTo(map);
+      var featureGroup = L.featureGroup([marker, circle]).addTo(map)
+    }
+  }
+}
 </script>
