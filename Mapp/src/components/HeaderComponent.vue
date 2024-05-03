@@ -3,7 +3,7 @@
     <h1 style="margin-top: 14px;margin-left: 20px;"> mApp 🗺</h1>
     <div class="header-buttons">
       <button v-if="isLoggedIn" @click="logout" class="btn float-end py-1" type="button" style="color: white;background: #00a693;margin-right: 20px;">Log out</button>
-      <a href="/mApp/home" v-if="isLoggedIn"><button class="btn float-end py-1" type="button" style="color: white;background: #00a693;margin-right: 20px;">Home</button></a>
+      <a @click="goHome" v-if="isLoggedIn"><button class="btn float-end py-1" type="button" style="color: white;background: #00a693;margin-right: 20px;">Home</button></a>
     </div>
   </header>
 </template>
@@ -18,6 +18,10 @@ let isLoggedIn = ref(false);
 onAuthStateChanged(auth, user => {
   isLoggedIn.value = !!user;
 });
+
+const goHome = () => {
+  router.push({ name: 'home' });
+};
 
 const logout = async () => {
   try {

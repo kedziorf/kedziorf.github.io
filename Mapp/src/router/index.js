@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
-import RegisterView from '@/views/RegisterView.vue'
-import AddPlaceView from '@/views/AddPlaceView.vue'
+import RegisterView from '../views/RegisterView.vue'
+import AddPlaceView from '../views/AddPlaceView.vue'
+import AddCommentView from '../views/AddCommentView.vue'
+
 import { auth } from '../firebase'; 
 
 
@@ -44,7 +46,7 @@ const router = createRouter({
     {
       path: '/comment',
       name: 'comment',
-      component: () => import('../views/AddCommentView.vue')
+      component: AddCommentView
     }
   ]
 })

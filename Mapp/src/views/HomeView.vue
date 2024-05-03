@@ -3,7 +3,7 @@
 <template>
   <div>
     <div id="map" class="col-lg-12"></div>
-    <a href="/mApp/add-place"><button class="btn" style="color: white;background: #00a693;margin-left:5%" >Save Current Location</button></a>
+    <a @click="goToSave"><button class="btn" style="color: white;background: #00a693;margin-left:5%" >Save Current Location</button></a>
     <section v-if="selectedPlace" style="margin-left: 5%;">
         <h1 style="margin-top:20px;">Location: {{ selectedPlace.name }}</h1>
         <p >Rating: {{ '⭐'.repeat(selectedPlace.rating) }}</p>
@@ -30,6 +30,10 @@ import { db } from "../firebase";
 <script>
 
 const selectedPlace = ref(null);
+
+const goToSave = () => {
+  router.push({ name: 'addplace'});
+};
 
 const goToComment = (placeName) => {
   console.log(placeName);
