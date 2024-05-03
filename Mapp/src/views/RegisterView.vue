@@ -18,7 +18,7 @@
                                 <div class="mb-3"><input v-model="email" class="form-control" type="email" name="email" placeholder="Email"></div>
                                 <div class="mb-3"><input v-model="password" class="form-control" type="password" name="password" placeholder="Password"></div>
                                 <div class="mb-3"><input v-model="retypePassword" class="form-control" type="password" name="password" placeholder="Retype Password"></div>
-                                <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit" style="background: #00A693;margin-bottom: 19px;">Register</button></div>
+                                <div class="mb-3"><button class="btn d-block w-100" type="submit" style="background: #00A693;margin-bottom: 19px; color:white;">Register</button></div>
                             </form>
                         </div>
                     </div>

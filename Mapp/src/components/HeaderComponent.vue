@@ -1,10 +1,11 @@
 <template>
-  <header>
-        <h1 style="margin-top: 14px;margin-left: 20px;"> mApp 🗺
-          <button v-if="isLoggedIn" @click="logout" class="btn float-end py-1" type="button" style="color: white;background: #00a693;margin-right: 20px;">Log out</button>
-          <a href="/mApp/home"><button class="btn float-end py-1" type="button" style="color: white;background: #00a693;margin-right: 20px;">Home</button></a>
-        </h1>
-    </header>
+  <header class="header">
+    <h1 style="margin-top: 14px;margin-left: 20px;"> mApp 🗺</h1>
+    <div class="header-buttons">
+      <button v-if="isLoggedIn" @click="logout" class="btn float-end py-1" type="button" style="color: white;background: #00a693;margin-right: 20px;">Log out</button>
+      <a href="/mApp/home" v-if="isLoggedIn"><button class="btn float-end py-1" type="button" style="color: white;background: #00a693;margin-right: 20px;">Home</button></a>
+    </div>
+  </header>
 </template>
 <script setup>
 import { ref } from 'vue';
@@ -28,3 +29,17 @@ const logout = async () => {
   }
 };
 </script>
+
+<style scoped>
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .header {
+    flex-direction: row;
+  }
+}
+</style>
