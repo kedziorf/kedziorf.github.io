@@ -3,16 +3,15 @@
 <template>
   <div>
     <div id="map" class="col-lg-12"></div>
-    <a href="/mApp/add-place"><button class="btn" style="color: white;background: #00a693;margin-left:20px" >Save Current Location</button></a>
-    <section v-if="selectedPlace">
-        <h1 style="margin-left: 20px; margin-top:20px;">{{ selectedPlace.name }}</h1>
-        <p style="margin-left: 20px;">{{ '⭐'.repeat(selectedPlace.rating) }}</p>
-        <p style="margin-left: 20px;">{{ selectedPlace.description }}</p>
+    <a href="/mApp/add-place"><button class="btn" style="color: white;background: #00a693;margin-left:5%" >Save Current Location</button></a>
+    <section v-if="selectedPlace" style="margin-left: 5%;">
+        <h1 style="margin-top:20px;">Location: {{ selectedPlace.name }}</h1>
+        <p >Rating: {{ '⭐'.repeat(selectedPlace.rating) }}</p>
+        <p >Description: {{ selectedPlace.description }}</p>
+        <img :src="selectedPlace.image" alt="Place image" class="img-thumbnail responsive-image">
+        <a @click="goToComment(selectedPlace.name)"><button class="btn" style="color: white;background: #00a693; margin-top: 20px;" >Add comment</button></a>
     </section>
-    <section v-if="selectedPlace">
-      <h1 style="margin-left: 20px; margin-top:20px;">Photos</h1> 
-        <img :src="selectedPlace.image" alt="Place image" class="img-thumbnail">
-    </section>
+    
   </div>
     
   
@@ -20,6 +19,7 @@
 <script setup>
 
 import { ref } from 'vue';
+import router from '../router/index.js'; 
 import L from 'leaflet';
 import currentLocationIcon from '../assets/img/current-location-icon.png';
 import { collection, getDocs } from "firebase/firestore";
@@ -28,7 +28,14 @@ import { db } from "../firebase";
 </script>
 
 <script>
+
 const selectedPlace = ref(null);
+
+const goToComment = (placeName) => {
+  console.log(placeName);
+  router.push({ name: 'comment'});
+};
+
 export default {
   async mounted() {
     var map = L.map('map').setView([0,0], 2);
@@ -82,7 +89,14 @@ export default {
       circle = L.circle([lat, long], {radius: accuracy})
 
       var featureGroup = L.featureGroup([marker, circle]).addTo(map)
-    }
+    }    
   }
 }
 </script>
+<style scoped>
+.responsive-image {
+  width: 95%;
+  max-width: 600px;
+  height: auto;
+}
+</style>

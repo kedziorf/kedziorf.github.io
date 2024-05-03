@@ -40,6 +40,11 @@ const router = createRouter({
       path: '/add-place',
       name: 'addplace',
       component: AddPlaceView,
+    },
+    {
+      path: '/comment',
+      name: 'comment',
+      component: () => import('../views/AddCommentView.vue')
     }
   ]
 })
