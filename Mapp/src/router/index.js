@@ -3,7 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import AddPlaceView from '../views/AddPlaceView.vue'
-import AddCommentView from '../views/AddCommentView.vue'
+import ChatView from '../views/ChatView.vue'
 
 import { auth } from '../firebase'; 
 
@@ -42,11 +42,35 @@ const router = createRouter({
       path: '/add-place',
       name: 'addplace',
       component: AddPlaceView,
+      beforeEnter: (to, from, next) => {
+        // Listen for auth state changes
+        auth.onAuthStateChanged(user => {
+          if (user) {
+            // If user is signed in, proceed to home page
+            next();
+          } else {
+            // If user is not signed in, redirect to login page
+            next({ name: 'login' });
+          }
+        });
+      }
     },
     {
-      path: '/comment',
-      name: 'comment',
-      component: AddCommentView
+      path: '/chat',
+      name: 'chat',
+      component: ChatView,
+      beforeEnter: (to, from, next) => {
+        // Listen for auth state changes
+        auth.onAuthStateChanged(user => {
+          if (user) {
+            // If user is signed in, proceed to home page
+            next();
+          } else {
+            // If user is not signed in, redirect to login page
+            next({ name: 'login' });
+          }
+        });
+      }
     }
   ]
 })

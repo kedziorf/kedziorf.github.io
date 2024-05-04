@@ -1,17 +1,31 @@
 <template>
-  <header class="header">
-    <h1 style="margin-top: 14px;margin-left: 20px;"> mApp 🗺</h1>
-    <div class="header-buttons">
-      <button v-if="isLoggedIn" @click="logout" class="btn float-end py-1" type="button" style="color: white;background: #00a693;margin-right: 20px;">Log out</button>
-      <a @click="goHome" v-if="isLoggedIn"><button class="btn float-end py-1" type="button" style="color: white;background: #00a693;margin-right: 20px;">Home</button></a>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid ">
+    <a class="navbar-brand" @click="goHome" href="#">mApp 🗺</a>
+    <button v-if="isLoggedIn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div v-if="isLoggedIn" class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">
+        <li class="nav-item">
+          <a @click="goHome" style="" class="nav-link" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a @click="goChat" class="nav-link" href="#">Chat</a>
+        </li>
+        <li class="nav-item">
+          <a @click="logout" class="nav-link danger" href="#">Log out</a>
+        </li>
+      </ul>
     </div>
-  </header>
+  </div>
+</nav>
 </template>
 <script setup>
 import { ref } from 'vue';
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from '../firebase.js';
-import router from '../router/index.js'; 
+import router from '../router/index.js';
 
 let isLoggedIn = ref(false);
 
@@ -21,6 +35,10 @@ onAuthStateChanged(auth, user => {
 
 const goHome = () => {
   router.push({ name: 'home' });
+};
+
+const goChat = () => {
+  router.push({ name: 'chat' });
 };
 
 const logout = async () => {
@@ -35,15 +53,5 @@ const logout = async () => {
 </script>
 
 <style scoped>
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
-@media (min-width: 1024px) {
-  .header {
-    flex-direction: row;
-  }
-}
 </style>

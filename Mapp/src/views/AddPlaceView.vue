@@ -33,6 +33,9 @@
             <span v-if="isSubmitting">Loading...</span>
             <span v-else>Submit</span>
           </button>
+          <div v-if="isSubmitting" class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
         </div>
       </form>
     </div>

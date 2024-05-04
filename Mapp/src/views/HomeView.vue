@@ -3,13 +3,14 @@
 <template>
   <div>
     <div id="map" class="col-lg-12"></div>
-    <a @click="goToSave"><button class="btn" style="color: white;background: #00a693;margin-left:5%" >Save Current Location</button></a>
+    <a @click="goToSave">
+      <button class="btn" style="color: white;background: #00a693;margin-left:5%" >Save Current Location</button>
+    </a>
     <section v-if="selectedPlace" style="margin-left: 5%;">
         <h1 style="margin-top:20px;">Location: {{ selectedPlace.name }}</h1>
         <p >Rating: {{ '⭐'.repeat(selectedPlace.rating) }}</p>
         <p >Description: {{ selectedPlace.description }}</p>
-        <img :src="selectedPlace.image" alt="Place image" class="img-thumbnail responsive-image">
-        <a @click="goToComment(selectedPlace.name)"><button class="btn" style="color: white;background: #00a693; margin-top: 20px;" >Add comment</button></a>
+        <img :src="selectedPlace.image" alt="Place image" class="img-thumbnail responsive-image"><br>
     </section>
     
   </div>
@@ -19,7 +20,7 @@
 <script setup>
 
 import { ref } from 'vue';
-import router from '../router/index.js'; 
+import router from '../router/index.js';
 import L from 'leaflet';
 import currentLocationIcon from '../assets/img/current-location-icon.png';
 import { collection, getDocs } from "firebase/firestore";
@@ -31,16 +32,15 @@ import { db } from "../firebase";
 
 const selectedPlace = ref(null);
 
-const goToSave = () => {
-  router.push({ name: 'addplace'});
-};
-
-const goToComment = (placeName) => {
-  console.log(placeName);
-  router.push({ name: 'comment'});
-};
-
 export default {
+  methods: {
+    goToSave () {
+      router.push({ name: 'addplace'});
+    },
+    goToComment () {
+      this.$router.push({ name: 'comment'});
+    }
+  },
   async mounted() {
     var map = L.map('map').setView([0,0], 2);
 
