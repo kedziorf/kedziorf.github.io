@@ -12,7 +12,8 @@
             </div>
             <form @submit.prevent="addComment" class="mt-3">
                 <div class="mb-3">
-                    <input v-model="newComment" placeholder="Send message" type="text" class="form-control" id="new-comment"  required>
+                    <input v-model="newComment" placeholder="Send message" type="text" class="form-control"
+                        id="new-comment" required>
                 </div>
                 <button type="submit" class="btn" style="color: white;background: #00a693;">Send</button>
             </form>
@@ -22,7 +23,7 @@
 
 <script>
 import { ref, onMounted, nextTick } from 'vue';
-import { addDoc, collection, getDocs, serverTimestamp, query, orderBy } from 'firebase/firestore';
+import { addDoc, collection, getDocs, onSnapshot, serverTimestamp, query, orderBy } from 'firebase/firestore';
 
 import { db, auth } from '../firebase.js';
 
@@ -32,17 +33,22 @@ export default {
         const comments = ref([]);
         const commentsContainer = ref(null);
 
-        const fetchComments = async () => {
+        const fetchComments = () => {
             const commentsQuery = query(collection(db, "comments"), orderBy("timestamp", "asc"));
-            const querySnapshot = await getDocs(commentsQuery);
-            comments.value = querySnapshot.docs.map(doc => {
-                const data = doc.data();
-                data.timestamp = data.timestamp.toDate();
-                return data;
+
+            onSnapshot(commentsQuery, (snapshot) => {
+                comments.value = snapshot.docs.map(doc => {
+                    const data = doc.data();
+                    data.timestamp = data.timestamp.toDate(); 
+                    return data;
+                });
+
+               
+                nextTick().then(() => {
+                    commentsContainer.value.scrollTop = commentsContainer.value.scrollHeight;
+                });
             });
-            await nextTick();
-            commentsContainer.value.scrollTop = commentsContainer.value.scrollHeight; 
-        };        
+        };
 
         onMounted(fetchComments);
 
@@ -79,7 +85,7 @@ export default {
 }
 
 .comments-container {
-  max-height: calc(1.5em * 22); 
-  overflow-y: auto;
+    max-height: calc(1.5em * 22);
+    overflow-y: auto;
 }
 </style>

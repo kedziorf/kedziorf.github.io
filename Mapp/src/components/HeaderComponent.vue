@@ -1,7 +1,7 @@
 <template>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid ">
-    <a class="navbar-brand" @click="goHome" href="#">mApp 🗺</a>
+    <a class="navbar-brand" @click="goHome" href="#">mApp <img style="height: 4vh; min-height: 40px;" src="/pin-icon.png"></a>
     <button v-if="isLoggedIn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
