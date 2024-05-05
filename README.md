@@ -6,7 +6,7 @@ Mogą oni dodać zdjęcie miejsca, zostawić ocenę lub dodać krótki opis.
 Aplikacja pozwala również wymieniać się swoimi komentarzami dotyczącymi wstawionych wcześniej miejsc w formie otwartego chatu.
 Aplikacja wspiera dodawanie zdjęć wraz z pinezką, obsługuje GPSa a także niektóre operacje potwierdza krótką wibracją.
 
-## try for yourself:
+## Try it yourself:
 [Open the website](https://mapp-32c9c.web.app/)
 
 ### To open in dev view:
@@ -15,3 +15,6 @@ Aplikacja wspiera dodawanie zdjęć wraz z pinezką, obsługuje GPSa a także ni
 npm install
 npm run dev -- --host
 ```
+
+## See the prototype:
+[Open the prototype](https://marvelapp.com/prototype/1ai60eaj/screen/94550412)
