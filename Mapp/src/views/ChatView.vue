@@ -23,7 +23,7 @@
 
 <script>
 import { ref, onMounted, nextTick } from 'vue';
-import { addDoc, collection, getDocs, onSnapshot, serverTimestamp, query, orderBy } from 'firebase/firestore';
+import { addDoc, collection, onSnapshot, serverTimestamp, query, orderBy } from 'firebase/firestore';
 
 import { db, auth } from '../firebase.js';
 
